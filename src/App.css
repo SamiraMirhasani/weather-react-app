@@ -1,0 +1,9 @@
+.WeatherApp h1,
+form, h1, 
+h3 {
+  text-align: center;
+  margin-top: 30px;
+}
+ul {
+  list-style: none;
+}
