@@ -6,7 +6,11 @@ function App() {
   return (
     <div className="App">
     <h1>Weather App</h1>
-         <Weather/> 
+         <Weather/>
+         <footer>
+          <a href="">Open source code </a>
+          by Samira Mirhasani
+         </footer>
       
     </div>
   );
