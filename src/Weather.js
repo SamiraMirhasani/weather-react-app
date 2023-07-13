@@ -52,20 +52,22 @@ export default function Weather() {
         ></input></div>
         <div className="col-3">
           <input type="submit" value="Search" className="btn btn-primary"></input>
-        </div>
+          </div>
         </div>
       </form>
       <h1>New York</h1>
-      <ul>
+      <ul className="day-description">
         <li>Wednesday 12:00</li>
         <li>partly Cloudy</li>
       </ul>
       <div className="row">
         <div className="col-6">
           icon 
-          6°C|F
+          <span className="temperature">6</span>
+          <span className="celcius">°C</span>
+          <span className="fahreinheit">|F</span>
         </div>
-        <div className="col-6">
+        <div className="col-6 weather-info">
           <ul>
             <li>
               Precipitation: 15 %

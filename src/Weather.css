@@ -1,3 +1,28 @@
 ul{
     list-style: none;
 }
+h1{
+    color: #202124;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 400;
+    padding-bottom: 0;
+    padding-top: 20px;
+}
+.day-description, .weather-info{
+    color: #70757a;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 22px;
+    padding: 0;
+}
+.temperature{
+    font-family: Google Sans,Roboto,arial,sans-serif;
+    font-size: 48px;
+    line-height: 56px;
+}
+.celcius, .fahreinheit{
+    position: relative;
+    top : -24px;
+
+}
