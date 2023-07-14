@@ -7,42 +7,33 @@ import axios from "axios";
 
 
 
-export default function Weather() {
-  let [city, setCity] = useState(null);
-  let [info, setInfo] = useState(null);
+export default function Weather(props) {
+  let [ready, setReady] = useState(false);
+  let [city, setCity] = useState("Paris");
+  let [weatherData, setWeatherData] = useState({});
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    let apiKey = "caf1f1c8b723edf56ea35c0626f88b06";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    // console.log(apiUrl);
-    axios.get(apiUrl).then(function showTemperature(response) {
-      // console.log(response.data);
-
-      setInfo(
-        <ul>
-          <li key="temperature">Temperature: {Math.round(response.data.main.temp)}°C </li>
-          <li key="description">Description: {response.data.weather[0].description} </li>
-          <li key="humidity">Humidity: {response.data.main.humidity} %</li>
-          <li key="wind">Wind: {response.data.wind.speed} m/s</li>
-          <li key="icon">
-            <img
-              src={`https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`}
-              alt="Weather Icon"
-            />
-          </li>
-        </ul>
-      );
-    });
+  function showTemperature(response) {
+    setReady(true);
+    setWeatherData({
+      city: response.data.name,
+      date: "Wednesday 12:00",
+      temperature: response.data.main.temp,
+      description: response.data.weather[0].description,
+      humidity: response.data.main.humidity,
+      wind: response.data.wind.speed,
+      icon: response.data.weather[0].icon,
+    })
+    
   }
 
   function updateCity(event) {
     setCity(event.target.value);
   }
-
+  
+if (ready){
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="row">
           <div className="col-9"><input
           type="search"
@@ -55,34 +46,40 @@ export default function Weather() {
           </div>
         </div>
       </form>
-      <h1>New York</h1>
+      <h1>{weatherData.city}</h1>
       <ul className="day-description">
-        <li>Wednesday 12:00</li>
-        <li>partly Cloudy</li>
+        <li>{weatherData.date}</li>
+        <li className="text-capitalize">{weatherData.description}</li>
       </ul>
       <div className="row">
         <div className="col-6">
-          icon 
-          <span className="temperature">6</span>
+          <img
+              src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
+              alt="Weather Icon"
+            />
+        <span className="temperature">{Math.round(weatherData.temperature)}</span>
           <span className="celcius">°C</span>
           <span className="fahreinheit">|F</span>
         </div>
         <div className="col-6 weather-info">
           <ul>
             <li>
-              Precipitation: 15 %
+              Humidity: {weatherData.humidity} %
             </li>
             <li>
-              Humidity: 15 %
-            </li>
-            <li>
-              Wind: 15 mph
+              Wind: {weatherData.wind} mph
             </li>
           </ul>
         </div>
       </div>
-      
-      <h3>{info}</h3>
     </div>
   );
+}else{
+  
+    let apiKey = "caf1f1c8b723edf56ea35c0626f88b06";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+    // console.log(apiUrl);
+    axios.get(apiUrl).then(showTemperature);
+    return "Loading ..."
+} 
 }
