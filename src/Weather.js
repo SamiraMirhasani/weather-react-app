@@ -3,20 +3,20 @@ import React, { useState } from "react";
 import "./App.css";
 import "./Weather.css";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 
 
 
 
 export default function Weather(props) {
   let [ready, setReady] = useState(false);
-  let [city, setCity] = useState("Paris");
   let [weatherData, setWeatherData] = useState({});
 
   function showTemperature(response) {
     setReady(true);
     setWeatherData({
       city: response.data.name,
-      date: "Wednesday 12:00",
+      date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
       humidity: response.data.main.humidity,
@@ -26,9 +26,9 @@ export default function Weather(props) {
     
   }
 
-  function updateCity(event) {
-    setCity(event.target.value);
-  }
+  // function updateCity(event) {
+  //   setCity(event.target.value);
+  // }
   
 if (ready){
   return (
@@ -39,7 +39,7 @@ if (ready){
           type="search"
           placeholder="Enter a City"
           className="form-control"
-          onChange={updateCity}
+        
         ></input></div>
         <div className="col-3">
           <input type="submit" value="Search" className="btn btn-primary"></input>
@@ -48,7 +48,7 @@ if (ready){
       </form>
       <h1>{weatherData.city}</h1>
       <ul className="day-description">
-        <li>{weatherData.date}</li>
+        <li> <FormattedDate date={weatherData.date}/></li>
         <li className="text-capitalize">{weatherData.description}</li>
       </ul>
       <div className="row">

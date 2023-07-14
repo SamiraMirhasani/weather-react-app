@@ -8,7 +8,7 @@ function App() {
     <div className='container'> 
       <div className="App">
         <h1>Weather App</h1>
-         <Weather defaultCity="Paris"/>
+         <Weather defaultCity="Corvallis"/>
          <footer>
           <a href="https://github.com/SamiraMirhasani/weather-react-app" target="_blank" rel="noreferrer">Open source code </a>
           by Samira Mirhasani
