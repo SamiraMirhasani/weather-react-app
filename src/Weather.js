@@ -60,7 +60,7 @@ if (ready){
           </div>
         </div>
       </form>
-      <WeatherInfo data ={weatherData}/>
+      <WeatherInfo data={weatherData}/>
     </div>
   );
 }else{
