@@ -7,13 +7,12 @@ function App() {
   return (
     <div className='container'> 
       <div className="App">
-        <h1>Weather App</h1>
          <Weather defaultCity="New York"/>
-         <footer>
+      </div>
+      <footer>
           <a href="https://github.com/SamiraMirhasani/weather-react-app" target="_blank" rel="noreferrer">Open source code </a>
           by Samira Mirhasani
          </footer>
-      </div>
     </div>
   );
 }
