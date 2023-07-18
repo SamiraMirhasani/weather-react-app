@@ -4,6 +4,7 @@ import "./App.css";
 import "./Weather.css";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForcast from "./WeatherForcast";
 
 
 
@@ -16,6 +17,7 @@ export default function Weather(props) {
   function showTemperature(response) {
     setReady(true);
     setWeatherData({
+      coordinates: response.data.coord,
       city: response.data.name,
       date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
@@ -61,6 +63,7 @@ if (ready){
         </div>
       </form>
       <WeatherInfo data={weatherData}/>
+      <WeatherForcast coordinates={weatherData.coordinates}/>
     </div>
   );
 }else{
