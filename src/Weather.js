@@ -12,7 +12,9 @@ import WeatherForcast from "./WeatherForcast";
 export default function Weather(props) {
   let [ready, setReady] = useState(false);
   let [weatherData, setWeatherData] = useState({});
-  let [city, setCity] = useState(props.defaultCity)
+  let [city, setCity] = useState(props.defaultCity);
+
+
 
   function showTemperature(response) {
     setReady(true);
@@ -30,7 +32,7 @@ export default function Weather(props) {
   }
 
 function search(){
-  let apiKey = "caf1f1c8b723edf56ea35c0626f88b06";
+  let apiKey = "a969311cfcbb4a83dfad2cf7478397f9";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     // console.log(apiUrl);
   axios.get(apiUrl).then(showTemperature);
